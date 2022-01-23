@@ -18,6 +18,7 @@ npx degit dodiameer/fast-gql <DESTINATION>
 cd <DESTINATION>
 yarn
 cp .env.example .env # Make sure to edit the values too
+yarn prisma migrate dev --name init
 yarn graphql:gen
 yarn dev
 ```
