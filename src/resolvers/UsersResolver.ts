@@ -1,12 +1,15 @@
 import { MutationResolvers, QueryResolvers } from "$generated/graphql";
 import { Context } from "$types";
-import { generateToken, verifyToken } from "$utils/jwt";
+import { generateToken, TokenType, verifyToken } from "$utils/jwt";
 import { EnvelopError } from "@envelop/core";
 import argon2 from "argon2";
 
 type Resolver = {
   Query: Pick<QueryResolvers<Context>, "me">;
-  Mutation: Pick<MutationResolvers<Context>, "login" | "register">;
+  Mutation: Pick<
+    MutationResolvers<Context>,
+    "login" | "register" | "logout" | "refreshToken"
+  >;
 };
 
 export const UsersResolver: Resolver = {
@@ -17,7 +20,11 @@ export const UsersResolver: Resolver = {
     },
   },
   Mutation: {
-    login: async (_, { input: { username, password } }, { prisma }) => {
+    login: async (
+      _,
+      { input: { username, password } },
+      { prisma, setRefreshToken }
+    ) => {
       const INCORRECT = new EnvelopError("Username or password is incorrect");
       const user = await prisma.user.findUnique({
         where: { username },
@@ -32,12 +39,17 @@ export const UsersResolver: Resolver = {
         throw INCORRECT;
       }
 
+      setRefreshToken(generateToken(user, TokenType.REFRESH));
       return {
         user,
         accessToken: generateToken(user),
       };
     },
-    register: async (_, { input: { username, password } }, { prisma }) => {
+    register: async (
+      _,
+      { input: { username, password } },
+      { prisma, setRefreshToken }
+    ) => {
       try {
         const user = await prisma.user.create({
           data: {
@@ -46,6 +58,7 @@ export const UsersResolver: Resolver = {
           },
         });
 
+        setRefreshToken(generateToken(user, TokenType.REFRESH));
         return {
           user,
           accessToken: generateToken(user),
@@ -56,6 +69,30 @@ export const UsersResolver: Resolver = {
         }
         throw e;
       }
+    },
+    logout: (_, __, { clearRefreshToken }) => {
+      clearRefreshToken();
+      return true;
+    },
+    refreshToken: async (_, __, { refreshToken, prisma, setRefreshToken }) => {
+      const payload = verifyToken(refreshToken || "");
+      if (!payload) {
+        throw new EnvelopError("Invalid token");
+      }
+
+      const user = await prisma.user.findUnique({
+        where: { id: payload.userId },
+      });
+
+      if (!user) {
+        throw new EnvelopError("Invalid token");
+      }
+
+      setRefreshToken(generateToken(user, TokenType.REFRESH));
+      return {
+        user,
+        accessToken: generateToken(user),
+      };
     },
   },
 };

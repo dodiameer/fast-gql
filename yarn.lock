@@ -1616,6 +1616,11 @@ convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
+cookie-signature@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.1.0.tgz#cc94974f91fb9a9c1bb485e95fc2b7f4b120aff2"
+  integrity sha512-Alvs19Vgq07eunykd3Xy2jF0/qSNv2u7KDbAek9H5liV1UMijbqFs5cycZvv5dVsvseT/U4H8/7/w8Koh35C4A==
+
 cookie@^0.4.0:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.1.tgz#afd713fe26ebd21ba95ceb61f9a8116e50a537d1"
@@ -2074,6 +2079,14 @@ fast-safe-stringify@^2.0.7, fast-safe-stringify@^2.0.8:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.1.1.tgz#c406a83b6e70d9e35ce3b30a81141df30aeba884"
   integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
+
+fastify-cookie@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/fastify-cookie/-/fastify-cookie-5.5.0.tgz#5898ef8197a3976874c30c04c21f103856ab251f"
+  integrity sha512-XhexnjmAR4CUh3Cz6Ko0is+pa8k1bS6+nkf/i3viv4p7R1fwGtGhAXuz+b4nEM0x7pvdi5ApKY73Bp5CELZP7g==
+  dependencies:
+    cookie-signature "^1.1.0"
+    fastify-plugin "^3.0.0"
 
 fastify-error@^0.3.0:
   version "0.3.1"

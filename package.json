@@ -28,6 +28,7 @@
     "@prisma/client": "^3.8.1",
     "argon2": "^0.28.3",
     "fastify": "^3.27.0",
+    "fastify-cookie": "^5.5.0",
     "fastify-plugin": "^3.0.0",
     "graphql": "^16.2.0",
     "graphql-helix": "^1.11.0",

@@ -25,4 +25,6 @@ type Query {
 type Mutation {
   login(input: LoginInput!): AuthResponse!
   register(input: RegisterInput!): AuthResponse!
+  logout: Boolean!
+  refreshToken: AuthResponse!
 }

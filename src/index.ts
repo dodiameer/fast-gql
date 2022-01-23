@@ -4,6 +4,7 @@ import { IS_DEV, PORT } from "$env";
 import fastify from "fastify";
 import { prisma } from "$plugins/prisma";
 import { graphql } from "$plugins/graphql";
+import cookie from "fastify-cookie";
 
 const app = fastify({
   logger: {
@@ -12,6 +13,7 @@ const app = fastify({
 });
 
 app.register(prisma);
+app.register(cookie);
 app.register(graphql);
 
 const start = async () => {

@@ -7,4 +7,7 @@ export type Context = {
   prisma: PrismaClient;
   validateUser: () => Promise<void>;
   currentUser: User;
+  refreshToken?: string;
+  setRefreshToken: (token: string) => void;
+  clearRefreshToken: () => void;
 };
