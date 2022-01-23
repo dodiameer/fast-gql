@@ -12,6 +12,7 @@
     "@graphql-codegen/introspection": "2.1.1",
     "@graphql-codegen/typescript": "2.4.2",
     "@graphql-codegen/typescript-resolvers": "2.4.3",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.10",
     "bob-tsm": "^0.4.5",
     "dotenv": "^14.2.0",
@@ -24,10 +25,12 @@
     "@envelop/core": "^1.7.1",
     "@graphql-tools/schema": "^8.3.1",
     "@prisma/client": "^3.8.1",
+    "argon2": "^0.28.3",
     "fastify": "^3.27.0",
     "fastify-plugin": "^3.0.0",
     "graphql": "^16.2.0",
     "graphql-helix": "^1.11.0",
+    "jsonwebtoken": "^8.5.1",
     "prisma": "^3.8.1"
   },
   "scripts": {

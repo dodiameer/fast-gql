@@ -3,6 +3,26 @@ type User {
   username: String!
 }
 
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+input RegisterInput {
+  username: String!
+  password: String!
+}
+
+type AuthResponse {
+  accessToken: String!
+  user: User!
+}
+
 type Query {
-  users: [User!]!
+  me: User!
+}
+
+type Mutation {
+  login(input: LoginInput!): AuthResponse!
+  register(input: RegisterInput!): AuthResponse!
 }
