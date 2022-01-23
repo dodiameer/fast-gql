@@ -17,6 +17,7 @@ A boilerplate for getting started building GraphQL APIs with Fastify & Typescrip
 npx degit dodiameer/fast-gql <DESTINATION>
 cd <DESTINATION>
 yarn
+cp .env.example .env # Make sure to edit the values too
 yarn graphql:gen
 yarn dev
 ```
