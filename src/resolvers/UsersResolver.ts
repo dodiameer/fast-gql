@@ -11,24 +11,9 @@ type Resolver = {
 
 export const UsersResolver: Resolver = {
   Query: {
-    me: async (_, __, { request, prisma }) => {
-      // TODO Use envelop's auth middleware
-      const token =
-        request.headers?.authorization?.replace("Bearer ", "") || "";
-      const payload = verifyToken(token);
-      if (!payload) {
-        throw new EnvelopError("Unauthorized");
-      }
-
-      const user = await prisma.user.findUnique({
-        where: { id: payload.userId },
-      });
-
-      if (!user) {
-        throw new EnvelopError("Unauthorized");
-      }
-
-      return user;
+    me: async (_, __, { validateUser, currentUser }) => {
+      await validateUser();
+      return currentUser;
     },
   },
   Mutation: {
