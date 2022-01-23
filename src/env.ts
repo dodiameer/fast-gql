@@ -6,3 +6,4 @@ export const IS_TEST = process.env.NODE_ENV === "test";
 export const IS_DEV = !IS_PROD && !IS_TEST;
 export const PORT = Number(process.env.PORT || 3001);
 export const JWT_SECRET = process.env.JWT_SECRET!;
+export const APP_URL = process.env.APP_URL || "";
