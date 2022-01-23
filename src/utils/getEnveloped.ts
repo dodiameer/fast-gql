@@ -9,6 +9,7 @@ import { useGenericAuth, ResolveUserFn } from "@envelop/generic-auth";
 import { User } from "@prisma/client";
 import { verifyToken } from "$utils/jwt";
 import { loadSchema } from "$utils/loadSchema";
+import { useGraphQlJit } from "@envelop/graphql-jit";
 
 const resolveUserFn: ResolveUserFn<User, Context> = async (context) => {
   const token =
@@ -40,5 +41,6 @@ export const getEnveloped = envelop({
       },
       mode: "resolve-only",
     }),
+    useGraphQlJit(),
   ],
 });

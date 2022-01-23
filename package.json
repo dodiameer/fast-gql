@@ -24,6 +24,7 @@
   "dependencies": {
     "@envelop/core": "^1.7.1",
     "@envelop/generic-auth": "^2.0.0",
+    "@envelop/graphql-jit": "^2.0.0",
     "@graphql-tools/schema": "^8.3.1",
     "@prisma/client": "^3.8.1",
     "argon2": "^0.28.3",
