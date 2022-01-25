@@ -1,13 +1,12 @@
 import { MutationResolvers, QueryResolvers } from "$generated/graphql";
-import { Context } from "$types";
 import { generateToken, TokenType, verifyToken } from "$utils/jwt";
 import { EnvelopError } from "@envelop/core";
 import argon2 from "argon2";
 
 type Resolver = {
-  Query: Pick<QueryResolvers<Context>, "me">;
+  Query: Pick<QueryResolvers, "me">;
   Mutation: Pick<
-    MutationResolvers<Context>,
+    MutationResolvers,
     "login" | "register" | "logout" | "refreshToken"
   >;
 };

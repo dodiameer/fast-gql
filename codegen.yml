@@ -5,7 +5,11 @@ generates:
   src/generated/graphql.ts:
     plugins:
       - "typescript"
-      - "typescript-resolvers"
+      - "typescript-resolvers":
+    config:
+      mappers:
+        User: "@prisma/client#User as PrismaUser"
+      contextType: "$types#Context"
   ./graphql.schema.json:
     plugins:
       - "introspection"
